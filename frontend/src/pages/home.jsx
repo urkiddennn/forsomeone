@@ -25,7 +25,7 @@ export const Home = () => {
 
       const data = await response.json();
       setAllMessages(data);
-      console.log(data.length())
+
       setFilteredMessages(data); // Initially show all messages
       setLoading(false);
     } catch (error) {
