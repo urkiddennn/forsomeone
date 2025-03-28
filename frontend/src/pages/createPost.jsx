@@ -34,7 +34,7 @@ function CreatePost() {
   }
 
   return (
-    <div className='w-full h-screen flex flex-col justify-center items-center bg-purple-300'>
+    <div className='w-full h-screen md:p-0 p-3 flex flex-col justify-center items-center bg-purple-300'>
       <Header />
 
       <div className='w-full h-1/2 flex items-center justify-center'>

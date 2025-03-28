@@ -16,7 +16,7 @@ const PostForm = ({ onSubmit }) => { // onSubmit is destructured from props
   }
 
   return (
-    <div className='w-1/4 outline-2 rounded-lg p-3 flex flex-col justify-center items-center bg-white gap-2'>
+    <div className='md:w-1/4 w-full  outline-2 rounded-lg p-3 flex flex-col justify-center items-center bg-white gap-2'>
       <h1 className='font-bold text-lg'>Add message to someone</h1>
 
       <input
