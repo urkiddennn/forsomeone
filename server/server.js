@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
+import users from "./models/Users.js";
 
 dotenv.config();
 
@@ -21,13 +22,23 @@ mongoose
   });
 
 app.use(express.json({ limit: "5mb" }));
-app.use((req, res, next) => {
-  console.log(`Request received: ${req.method} ${req.url}`);
-  next();
+// app.use((_, __, next) => {
+//   console.log(`Request received: ${_.method} ${_.url}`);
+//   next();
+// });
+
+app.get("/api/health", (_, res) => {
+  res.status(200).json({ success: true, message: "Server is healthy" });
 });
 
-app.get("/api/health", (req, res) => {
-  res.status(200).json({ success: true, message: "Server is healthy" });
+app.post("/api/user", async (req, res) => {
+  try {
+    const user = new users(req.body);
+    await user.save();
+    res.status(201).json(user);
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 const PORT = process.env.PORT || 5000;
