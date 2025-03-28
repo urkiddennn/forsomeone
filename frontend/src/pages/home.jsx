@@ -25,7 +25,7 @@ export const Home = () => {
 
       const data = await response.json();
       setAllMessages(data);
-
+      setTotalMessage(data.length)
       setFilteredMessages(data); // Initially show all messages
       setLoading(false);
     } catch (error) {
@@ -89,6 +89,7 @@ export const Home = () => {
             Find Someone
           </button>
         </form>
+        <h1 className='font-bold text-xl'>Total Post: {totalMessage}</h1>
       </section>
       <section className='w-full h-1/2'>
         {loading ? (
