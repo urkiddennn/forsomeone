@@ -55,13 +55,7 @@ forSomeone is a web application that allows users to post messages anonymously. 
    npm start
    ```
 
-## API Endpoints
 
-| Method | Endpoint    | Description        |
-|--------|------------|--------------------|
-| GET    | `/posts`   | Get all posts      |
-| POST   | `/posts`   | Create a new post  |
-| DELETE | `/posts/:id` | Delete a post |
 
 ## Screenshots
 
