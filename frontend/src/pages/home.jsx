@@ -8,8 +8,8 @@ export const Home = () => {
   const [allMessages, setAllMessages] = useState([]);
   const [filteredMessages, setFilteredMessages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [totalMessage, setTotalMessage] = useState(0)
 
-  // Fetch all messages when the component mounts
   const fetchMessages = async () => {
     try {
       const response = await fetch('https://forsomeone-five.vercel.app/api/user', {
@@ -25,6 +25,7 @@ export const Home = () => {
 
       const data = await response.json();
       setAllMessages(data);
+      console.log(data.length())
       setFilteredMessages(data); // Initially show all messages
       setLoading(false);
     } catch (error) {
@@ -37,7 +38,6 @@ export const Home = () => {
     fetchMessages();
   }, []);
 
-  // Handle search submission
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchTerm.trim() === '') {

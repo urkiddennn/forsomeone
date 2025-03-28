@@ -1,14 +1,23 @@
-import mongose from "mongoose";
+import mongoose from "mongoose"; // Fixed typo: 'mongose' -> 'mongoose'
 
-const userSchema = new mongose.Schema(
+const userSchema = new mongoose.Schema(
   {
-    name: String,
-    post: String,
-    avatar: String
+    name: {
+      type: String,
+      required: true, // Makes 'name' field required
+    },
+    post: {
+      type: String,
+      required: true, // Makes 'post' field required
+    },
+    avatar: {
+      type: String,
+      required: true, // Makes 'avatar' field required
+    },
   },
   {
-    timestamps: true,
-  },
+    timestamps: true, // Adds createdAt and updatedAt fields
+  }
 );
 
-export default mongose.model("User", userSchema);
+export default mongoose.model("User", userSchema);
