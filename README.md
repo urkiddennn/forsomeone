@@ -67,9 +67,9 @@ forSomeone is a web application that allows users to post messages anonymously. 
 
 Here are some screenshots of the application:
 
-![Homepage](screenshots/homepage.png)
-![Post Page](screenshots/post-page.png)
-![Anonymous Avatar](screenshots/avatar.png)
+![Homepage](screenshot/1.png)
+![Post Page](screenshots/2.png)
+
 
 ## Contribution
 
