@@ -12,7 +12,7 @@ function CreatePost() {
 
   const handlePostSubmit = async (postData) => {
     try {
-      const response = await fetch('https://forsomeone-five.vercel.app/api/user', {
+      const response = await fetch('https://forsomeone-five.vercel.app/api/post', { // Changed to /api/post
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -23,12 +23,19 @@ function CreatePost() {
       if (response.ok) {
         const result = await response.json();
         console.log('Post created successfully:', result);
-        navigate('/'); // Navigate back to home after successful post
+        navigate('/');
       } else {
-        const errorData = await response.json();
-        console.error('Failed to create post:', response.status, errorData);
-        // Optionally, you could pass this error back to PostForm via a callback
-        throw new Error(errorData.error || 'Failed to create post');
+        // Check if response is JSON before parsing
+        const contentType = response.headers.get('content-type');
+        let errorMessage = 'Failed to create post';
+        if (contentType && contentType.includes('application/json')) {
+          const errorData = await response.json();
+          errorMessage = errorData.error || errorMessage;
+        } else {
+          const text = await response.text();
+          console.error('Non-JSON response:', text);
+        }
+        throw new Error(`${errorMessage} (Status: ${response.status})`);
       }
     } catch (error) {
       console.error('Error submitting post:', error.message);
