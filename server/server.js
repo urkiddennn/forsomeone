@@ -51,6 +51,28 @@ app.get("/api/user", async (req, res) => {
   }
 });
 
+//delete dont have any data
+app.delete("/api/delete-empty", async (req, res) => {
+    try {
+      // Find and delete documents where name and post are empty or null
+      const result = await Users.deleteMany({
+        $or: [
+          { name: { $in: ["", null] }, post: { $in: ["", null] } },
+        ],
+      });
+
+      if (result.deletedCount === 0) {
+        return res.status(200).json({ message: "No empty messages found to delete" });
+      }
+
+      res.status(200).json({
+        message: `Successfully deleted ${result.deletedCount} empty message(s)`,
+      });
+    } catch (err) {
+      res.status(500).json({ error: err.message });
+    }
+  });
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
