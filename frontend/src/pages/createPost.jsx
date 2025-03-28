@@ -13,7 +13,7 @@ function CreatePost() {
 
   const handlePostSubmit = async (postData) => {
     try {
-      const response = await fetch('http://localhost:5000/api/user', {
+      const response = await fetch('https://forsomeone-five.vercel.app/api/user', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

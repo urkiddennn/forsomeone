@@ -12,7 +12,7 @@ export const Home = () => {
   // Fetch all messages when the component mounts
   const fetchMessages = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/user', {
+      const response = await fetch('https://forsomeone-five.vercel.app/api/user', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
