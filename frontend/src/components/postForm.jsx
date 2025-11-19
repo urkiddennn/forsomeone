@@ -4,6 +4,8 @@ const PostForm = ({ onSubmit }) => {
   const [name, setName] = useState('');
   const [message, setMessage] = useState('');
   const [error, setError] = useState(''); // State for error messages
+  const minChars = 250;
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,8 +16,8 @@ const PostForm = ({ onSubmit }) => {
       setError('Name is required');
       return;
     }
-    if (!message.trim()) {
-      setError('Message is required');
+    if (!message.trim() || message.length < minChars) {
+      setError(`Message must be at least ${minChars} characters long`);
       return;
     }
 
@@ -52,6 +54,7 @@ const PostForm = ({ onSubmit }) => {
         value={message}
         onChange={(e) => setMessage(e.target.value)}
       />
+      <p className='text-sm text-gray-500'>{message.length}/{minChars}</p>
 
       <button
         className='outline-2 p-3 text-lg font-bold rounded-lg w-32 bg-red-300'
